@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>RTSP source</title>
+    <link rel="stylesheet" href="./_sdk/mstu.css" />
+    <style>
+      .login {
+        display: flex;
+        gap: 6px;
+        margin-top: 6px;
+      }
+
+      .login input {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .toggle {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--mstu-text-dim);
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .toggle input {
+        margin: 0;
+        accent-color: var(--mstu-accent);
+      }
+
+      /* The rate reads as a number that moves, so it gets the mono face. */
+      .rate {
+        margin-top: 8px;
+        font-family: var(--mstu-mono);
+        font-size: 10px;
+        font-variant-numeric: tabular-nums;
+        color: var(--mstu-text-faint);
+      }
+
+      .rate #kbits {
+        color: var(--mstu-text-dim);
+      }
+
+      .why {
+        margin-top: 6px;
+        font-size: 10px;
+        line-height: 1.4;
+        color: var(--mstu-warn, #d08770);
+      }
+
+      .why[hidden] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mstu-label">Camera address</div>
+
+    <div class="mstu-field">
+      <input id="url" placeholder="rtsp://camera:554/stream" />
+    </div>
+
+    <div class="login">
+      <input class="mstu-input" id="user" placeholder="username" autocomplete="off" />
+      <input
+        class="mstu-input"
+        id="password"
+        type="password"
+        placeholder="password"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="mstu-meta">
+      <span class="mstu-chip" id="codec" hidden></span>
+      <span class="mstu-dim" id="stream">nothing dialled</span>
+    </div>
+
+    <div class="rate"><span id="kbits">0</span> kbit/s<span id="loss"></span></div>
+
+    <div class="why" id="note" hidden></div>
+
+    <div class="row">
+      <label class="toggle"><input type="checkbox" id="reconnect" checked /> reconnect</label>
+
+      <button class="mstu-action" id="redial">Reconnect now</button>
+    </div>
+
+    <div class="mstu-status">
+      <span class="mstu-dot" id="dot"></span>
+      <span id="state">idle</span>
+      <span class="mstu-count" id="frames">0</span>
+    </div>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

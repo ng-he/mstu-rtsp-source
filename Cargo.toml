@@ -1,0 +1,17 @@
+[package]
+name = "mstu-rtsp-source"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+thiserror = "2.0.18"
+
+mstu-media = "0.1"
+mstu-sdk = "0.1"
+
+[dev-dependencies]
+# The same crate, with the media its tests are built from.
+mstu-media = { version = "0.1", features = ["fixture"] }
